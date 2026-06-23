@@ -2,7 +2,12 @@ import unittest
 
 import numpy as np
 
-from src.labels import CLASS_COLORS_RGB, decode_mask, encode_mask
+from src.labels import (
+    CLASS_COLORS_RGB,
+    decode_mask,
+    encode_mask,
+    repair_invalid_colors,
+)
 
 
 class LabelTests(unittest.TestCase):
@@ -18,6 +23,31 @@ class LabelTests(unittest.TestCase):
         encoded, invalid = encode_mask(mask)
         self.assertEqual(encoded[0, 0], 3)
         self.assertTrue(invalid[0, 0])
+
+    def test_invalid_region_uses_most_common_colored_neighbors(self):
+        class_ids = np.array(
+            [
+                [0, 0, 1],
+                [0, 3, 1],
+                [2, 3, 3],
+            ],
+            dtype=np.uint8,
+        )
+        invalid = np.zeros((3, 3), dtype=bool)
+        invalid[1, 1] = True
+
+        repaired = repair_invalid_colors(class_ids, invalid)
+
+        self.assertEqual(repaired[1, 1], 0)
+
+    def test_unidentified_does_not_vote(self):
+        class_ids = np.full((3, 3), 3, dtype=np.uint8)
+        invalid = np.zeros((3, 3), dtype=bool)
+        invalid[1, 1] = True
+
+        repaired = repair_invalid_colors(class_ids, invalid)
+
+        self.assertEqual(repaired[1, 1], 3)
 
 
 if __name__ == "__main__":

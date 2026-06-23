@@ -4,7 +4,7 @@ from pathlib import Path
 
 import numpy as np
 
-from src.labels import decode_mask, write_rgb
+from src.labels import decode_mask, encode_mask, read_rgb, write_rgb
 from src.validation import validate_dataset
 
 
@@ -31,6 +31,9 @@ class ValidationTests(unittest.TestCase):
             self.assertTrue(result.ok)
             self.assertEqual(len(result.warnings), 1)
             self.assertTrue((cleaned / "sample.png").exists())
+            cleaned_ids, invalid = encode_mask(read_rgb(cleaned / "sample.png"))
+            self.assertFalse(invalid.any())
+            self.assertEqual(cleaned_ids[0, 0], 0)
 
     def test_missing_mask_fails(self):
         with tempfile.TemporaryDirectory() as temporary:

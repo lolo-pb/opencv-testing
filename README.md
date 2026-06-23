@@ -22,7 +22,10 @@ Masks must use solid colors:
 | Pore | `(0, 0, 255)` blue |
 | Unidentified/artifact | `(0, 0, 0)` black |
 
-Other colors are reported and snapped to black in `data/validated_masks/`.
+Other colors are reported and replaced with the most common surrounding
+fiber, resin, or pore color in `data/validated_masks/`. Black unidentified
+pixels are excluded from that decision. Invalid regions with no reachable
+colored neighbors remain black.
 
 ## Setup
 

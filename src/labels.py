@@ -41,5 +41,38 @@ def encode_mask(mask_rgb: np.ndarray) -> tuple[np.ndarray, np.ndarray]:
     return class_ids, ~valid
 
 
+def repair_invalid_colors(
+    class_ids: np.ndarray,
+    invalid: np.ndarray,
+) -> np.ndarray:
+    repaired = class_ids.copy()
+    unresolved = invalid.copy()
+    kernel = np.ones((3, 3), dtype=np.uint8)
+    kernel[1, 1] = 0
+
+    while unresolved.any():
+        neighbor_counts = np.stack(
+            [
+                cv2.filter2D(
+                    (repaired == class_id).astype(np.uint8),
+                    cv2.CV_16U,
+                    kernel,
+                    borderType=cv2.BORDER_CONSTANT,
+                )
+                for class_id in range(UNIDENTIFIED_ID)
+            ],
+            axis=2,
+        )
+        most_common = np.argmax(neighbor_counts, axis=2).astype(np.uint8)
+        has_colored_neighbor = np.max(neighbor_counts, axis=2) > 0
+        fill = unresolved & has_colored_neighbor
+        if not fill.any():
+            break
+        repaired[fill] = most_common[fill]
+        unresolved[fill] = False
+
+    return repaired
+
+
 def decode_mask(class_ids: np.ndarray) -> np.ndarray:
     return CLASS_COLORS_RGB[class_ids]

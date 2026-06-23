@@ -3,7 +3,13 @@ from pathlib import Path
 
 import numpy as np
 
-from src.labels import decode_mask, encode_mask, read_rgb, write_rgb
+from src.labels import (
+    decode_mask,
+    encode_mask,
+    read_rgb,
+    repair_invalid_colors,
+    write_rgb,
+)
 
 
 IMAGE_EXTENSIONS = {".jpg", ".jpeg", ".png", ".bmp", ".tif", ".tiff", ".webp"}
@@ -86,8 +92,10 @@ def validate_dataset(
             continue
 
         if invalid_count:
+            class_ids = repair_invalid_colors(class_ids, invalid)
             warnings.append(
-                f"{name}: {invalid_count} invalid-color pixels converted to black"
+                f"{name}: repaired {invalid_count} invalid-color pixels from "
+                "surrounding fiber/resin/pore colors"
             )
 
         cleaned_path = clean_dir / f"{name}.png" if clean_dir else mask_path
