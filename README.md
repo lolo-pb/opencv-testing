@@ -48,8 +48,17 @@ Train only after the masks have been reviewed:
 python train.py
 ```
 
-The first run downloads pretrained MobileNetV2 weights. Training automatically
-uses a CUDA GPU when available and otherwise uses the CPU.
+By default, `python train.py` starts a fresh training run. To continue from the
+latest checkpoint, pass `--resume` and set `--epochs` to the final epoch number:
+
+```bash
+python train.py --resume checkpoints/latest.pt --epochs 60
+```
+
+For example, if the checkpoint is already at epoch 30, `--epochs 60` trains
+through epoch 60, not 60 extra epochs. The first run downloads pretrained
+MobileNetV2 weights. Training automatically uses a CUDA GPU when available and
+otherwise uses the CPU.
 
 Segment a new image:
 
@@ -58,6 +67,26 @@ python predict.py path/to/image.jpg --checkpoint checkpoints/final.pt
 ```
 
 This writes an exact-color mask and a visual overlay to `outputs/`.
+
+Process one test image with `predict.py`:
+
+```bash
+python predict.py "data/test/images/Experiment-1693.jpg" \
+  --checkpoint checkpoints/final.pt \
+  --output-dir outputs/test
+```
+
+Process one test image or the whole test image folder with
+`predict-configurable.py`:
+
+```bash
+python predict-configurable.py "data/test/images/Experiment-1693.jpg"
+python predict-configurable.py data/test/images
+```
+
+`predict-configurable.py` uses `checkpoints/final.pt` and writes to
+`outputs/test/` by default. Change the constants at the top of that file if you
+need a different checkpoint, output folder, tile size, or overlap.
 
 Run tests:
 
