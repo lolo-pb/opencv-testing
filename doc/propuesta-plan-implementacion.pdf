@@ -1,0 +1,188 @@
+%PDF-1.4
+%âãÏÓ
+1 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica /Encoding /WinAnsiEncoding >>
+endobj
+2 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold /Encoding /WinAnsiEncoding >>
+endobj
+3 0 obj
+<< /Length 3605 >>
+stream
+BT /F2 19 Tf 1 0 0 1 58.00 776.00 Tm (Propuesta de plan de implementacion del) Tj ET
+BT /F2 19 Tf 1 0 0 1 58.00 752.00 Tm (proyecto) Tj ET
+BT /F2 15 Tf 1 0 0 1 58.00 701.00 Tm (Titulo del proyecto) Tj ET
+BT /F1 10.5 Tf 1 0 0 1 58.00 669.00 Tm (Sistema inteligente para analisis automatizado de micrografias de materiales compuestos) Tj ET
+BT /F1 10.5 Tf 1 0 0 1 58.00 654.50 Tm (mediante vision computacional e inteligencia artificial) Tj ET
+BT /F2 15 Tf 1 0 0 1 58.00 616.00 Tm (Resumen ejecutivo) Tj ET
+BT /F1 10.5 Tf 1 0 0 1 58.00 584.00 Tm (El proyecto propone desarrollar una herramienta de software basada en inteligencia) Tj ET
+BT /F1 10.5 Tf 1 0 0 1 58.00 569.50 Tm (artificial para analizar micrografias de materiales compuestos, comenzando con) Tj ET
+BT /F1 10.5 Tf 1 0 0 1 58.00 555.00 Tm (materiales de fibra de vidrio y resina. El sistema permite segmentar automaticamente) Tj ET
+BT /F1 10.5 Tf 1 0 0 1 58.00 540.50 Tm (imagenes microscopicas, clasificando cada pixel en categorias relevantes como fibra,) Tj ET
+BT /F1 10.5 Tf 1 0 0 1 58.00 526.00 Tm (matriz/resina, porosidad y regiones no identificadas o artefactos.) Tj ET
+BT /F1 10.5 Tf 1 0 0 1 58.00 499.50 Tm (El objetivo principal es transformar un proceso tradicionalmente manual, lento y) Tj ET
+BT /F1 10.5 Tf 1 0 0 1 58.00 485.00 Tm (dependiente del criterio del operador en un flujo mas rapido, reproducible y accesible.) Tj ET
+BT /F1 10.5 Tf 1 0 0 1 58.00 470.50 Tm (A partir de micrografias cargadas por el usuario, el sistema genera mascaras de) Tj ET
+BT /F1 10.5 Tf 1 0 0 1 58.00 456.00 Tm (segmentacion y datos estadisticos que facilitan la interpretacion de la distribucion de) Tj ET
+BT /F1 10.5 Tf 1 0 0 1 58.00 441.50 Tm (fases del material.) Tj ET
+BT /F1 10.5 Tf 1 0 0 1 58.00 415.00 Tm (Actualmente existe un prototipo funcional que utiliza redes neuronales para segmentacion) Tj ET
+BT /F1 10.5 Tf 1 0 0 1 58.00 400.50 Tm (semantica de imagenes. El plan de implementacion busca consolidar este prototipo,) Tj ET
+BT /F1 10.5 Tf 1 0 0 1 58.00 386.00 Tm (mejorar su precision, ampliar el alcance hacia otros materiales compuestos y desarrollar) Tj ET
+BT /F1 10.5 Tf 1 0 0 1 58.00 371.50 Tm (una interfaz de usuario amigable que permita su uso por laboratorios, universidades,) Tj ET
+BT /F1 10.5 Tf 1 0 0 1 58.00 357.00 Tm (centros tecnologicos e industrias.) Tj ET
+BT /F2 15 Tf 1 0 0 1 58.00 318.50 Tm (Problema identificado) Tj ET
+BT /F1 10.5 Tf 1 0 0 1 58.00 286.50 Tm (El analisis microestructural de materiales compuestos es una tarea clave para evaluar) Tj ET
+BT /F1 10.5 Tf 1 0 0 1 58.00 272.00 Tm (calidad, desempeño, defectos de fabricacion y comportamiento mecanico. Sin embargo, gran) Tj ET
+BT /F1 10.5 Tf 1 0 0 1 58.00 257.50 Tm (parte del analisis de micrografias todavia requiere intervencion manual o herramientas) Tj ET
+BT /F1 10.5 Tf 1 0 0 1 58.00 243.00 Tm (de procesamiento de imagen con decenas de ajustes especificos para cada caso.) Tj ET
+BT /F1 10.5 Tf 1 0 0 1 58.00 216.50 Tm (Esto genera varios problemas:) Tj ET
+BT /F1 10.5 Tf 1 0 0 1 58.00 190.00 Tm (- Alto tiempo de analisis por muestra.) Tj ET
+BT /F1 10.5 Tf 1 0 0 1 58.00 172.50 Tm (- Variabilidad entre operadores.) Tj ET
+BT /F1 10.5 Tf 1 0 0 1 58.00 155.00 Tm (- Dificultad para procesar grandes volumenes de imagenes.) Tj ET
+BT /F1 10.5 Tf 1 0 0 1 58.00 137.50 Tm (- Baja trazabilidad de los criterios usados en la clasificacion.) Tj ET
+BT /F1 10.5 Tf 1 0 0 1 58.00 120.00 Tm (- Barreras de acceso para equipos tecnicos que no tienen especialistas en vision) Tj ET
+BT /F1 10.5 Tf 1 0 0 1 72.00 105.50 Tm (computacional o programacion.) Tj ET
+endstream
+endobj
+4 0 obj
+<< /Length 3528 >>
+stream
+BT /F1 10.5 Tf 1 0 0 1 58.00 780.00 Tm (En materiales compuestos, identificar correctamente fibras, matriz polimerica, poros y) Tj ET
+BT /F1 10.5 Tf 1 0 0 1 58.00 765.50 Tm (defectos permite obtener indicadores utiles para control de calidad, investigacion y) Tj ET
+BT /F1 10.5 Tf 1 0 0 1 58.00 751.00 Tm (optimizacion de procesos productivos. Y la cantidad de muestras analizadas mejora la) Tj ET
+BT /F1 10.5 Tf 1 0 0 1 58.00 736.50 Tm (calidad del analisis.) Tj ET
+BT /F2 15 Tf 1 0 0 1 58.00 698.00 Tm (Solucion propuesta) Tj ET
+BT /F1 10.5 Tf 1 0 0 1 58.00 666.00 Tm (La solucion consiste en una plataforma de analisis de micrografias basada en aprendizaje) Tj ET
+BT /F1 10.5 Tf 1 0 0 1 58.00 651.50 Tm (profundo. El sistema recibe imagenes microscopicas de materiales compuestos y produce) Tj ET
+BT /F1 10.5 Tf 1 0 0 1 58.00 637.00 Tm (automaticamente:) Tj ET
+BT /F1 10.5 Tf 1 0 0 1 58.00 610.50 Tm (- Una mascara segmentada por clase de material.) Tj ET
+BT /F1 10.5 Tf 1 0 0 1 58.00 593.00 Tm (- Una imagen superpuesta sobre la micrografia original.) Tj ET
+BT /F1 10.5 Tf 1 0 0 1 58.00 575.50 Tm (- Metricas cuantitativas, como proporcion de fibra, resina, porosidad y areas no) Tj ET
+BT /F1 10.5 Tf 1 0 0 1 72.00 561.00 Tm (clasificadas.) Tj ET
+BT /F1 10.5 Tf 1 0 0 1 58.00 543.50 Tm (- Resultados exportables para documentacion tecnica o investigacion.) Tj ET
+BT /F1 10.5 Tf 1 0 0 1 58.00 521.00 Tm (La version inicial esta enfocada en compuestos de fibra de vidrio, con cuatro clases) Tj ET
+BT /F1 10.5 Tf 1 0 0 1 58.00 506.50 Tm (principales:) Tj ET
+BT /F1 10.5 Tf 1 0 0 1 58.00 480.00 Tm (- Fibra.) Tj ET
+BT /F1 10.5 Tf 1 0 0 1 58.00 462.50 Tm (- Resina o matriz.) Tj ET
+BT /F1 10.5 Tf 1 0 0 1 58.00 445.00 Tm (- Poro.) Tj ET
+BT /F1 10.5 Tf 1 0 0 1 58.00 427.50 Tm (- Region no identificada, artefacto o zona ambigua.) Tj ET
+BT /F1 10.5 Tf 1 0 0 1 58.00 405.00 Tm (El proyecto contempla ampliar posteriormente la herramienta a otros materiales) Tj ET
+BT /F1 10.5 Tf 1 0 0 1 58.00 390.50 Tm (compuestos, como fibra de carbono, fibras aramidicas, fibras naturales, laminados) Tj ET
+BT /F1 10.5 Tf 1 0 0 1 58.00 376.00 Tm (hibridos y otros sistemas matriz-refuerzo.) Tj ET
+BT /F2 15 Tf 1 0 0 1 58.00 337.50 Tm (Estado actual del desarrollo) Tj ET
+BT /F1 10.5 Tf 1 0 0 1 58.00 305.50 Tm (El proyecto cuenta con un prototipo tecnico inicial que incluye:) Tj ET
+BT /F1 10.5 Tf 1 0 0 1 58.00 279.00 Tm (- Pipeline de preparacion y validacion de datos.) Tj ET
+BT /F1 10.5 Tf 1 0 0 1 58.00 261.50 Tm (- Carga de micrografias y mascaras etiquetadas manualmente.) Tj ET
+BT /F1 10.5 Tf 1 0 0 1 58.00 244.00 Tm (- Validacion de colores/clases en las mascaras.) Tj ET
+BT /F1 10.5 Tf 1 0 0 1 58.00 226.50 Tm (- Entrenamiento de un modelo de segmentacion basado en red neuronal.) Tj ET
+BT /F1 10.5 Tf 1 0 0 1 58.00 209.00 Tm (- Prediccion sobre nuevas imagenes.) Tj ET
+BT /F1 10.5 Tf 1 0 0 1 58.00 191.50 Tm (- Generacion de mascaras y overlays visuales.) Tj ET
+BT /F1 10.5 Tf 1 0 0 1 58.00 174.00 Tm (- Procesamiento por bloques para imagenes de mayor tamano.) Tj ET
+BT /F1 10.5 Tf 1 0 0 1 58.00 156.50 Tm (- Tests basicos para validar componentes del sistema.) Tj ET
+BT /F1 10.5 Tf 1 0 0 1 58.00 134.00 Tm (La arquitectura actual utiliza un modelo tipo U-Net con encoder MobileNetV2, entrenado) Tj ET
+BT /F1 10.5 Tf 1 0 0 1 58.00 119.50 Tm (para clasificacion pixel a pixel. Esto permite combinar eficiencia computacional con) Tj ET
+BT /F1 10.5 Tf 1 0 0 1 58.00 105.00 Tm (capacidad de segmentacion en imagenes microscopicas.) Tj ET
+endstream
+endobj
+5 0 obj
+<< /Length 4073 >>
+stream
+BT /F2 15 Tf 1 0 0 1 58.00 768.00 Tm (Plan de implementacion) Tj ET
+BT /F1 10.5 Tf 1 0 0 1 58.00 736.00 Tm (El plan de implementacion se concentrara primero en refinar el entrenamiento del modelo) Tj ET
+BT /F1 10.5 Tf 1 0 0 1 58.00 721.50 Tm (actual. Tambien se incorporaran metricas cuantitativas que permitan evaluar el desempeño) Tj ET
+BT /F1 10.5 Tf 1 0 0 1 58.00 707.00 Tm (del sistema y convertir las segmentaciones en informacion util para caracterizacion de) Tj ET
+BT /F1 10.5 Tf 1 0 0 1 58.00 692.50 Tm (materiales, como proporcion de fases, nivel de porosidad y distribucion de defectos.) Tj ET
+BT /F1 10.5 Tf 1 0 0 1 58.00 666.00 Tm (Una vez consolidado el desempeño tecnico, se desarrollara una interfaz de usuario mas) Tj ET
+BT /F1 10.5 Tf 1 0 0 1 58.00 651.50 Tm (amigable para facilitar el uso de la herramienta por personas sin experiencia en) Tj ET
+BT /F1 10.5 Tf 1 0 0 1 58.00 637.00 Tm (programacion. La interfaz permitira cargar micrografias, ejecutar el analisis,) Tj ET
+BT /F1 10.5 Tf 1 0 0 1 58.00 622.50 Tm (visualizar la imagen original junto con la mascara y la superposicion generada, y) Tj ET
+BT /F1 10.5 Tf 1 0 0 1 58.00 608.00 Tm (exportar resultados en formatos utiles para documentacion tecnica, investigacion o) Tj ET
+BT /F1 10.5 Tf 1 0 0 1 58.00 593.50 Tm (control de calidad. El objetivo es que el sistema pueda ser usado de manera simple en) Tj ET
+BT /F1 10.5 Tf 1 0 0 1 58.00 579.00 Tm (laboratorios, universidades, centros tecnologicos o entornos industriales.) Tj ET
+BT /F1 10.5 Tf 1 0 0 1 58.00 552.50 Tm (Finalmente, el alcance del proyecto se expandira a otros materiales compuestos. A partir) Tj ET
+BT /F1 10.5 Tf 1 0 0 1 58.00 538.00 Tm (de la experiencia inicial con fibra de vidrio y resina, se incorporaran nuevas) Tj ET
+BT /F1 10.5 Tf 1 0 0 1 58.00 523.50 Tm (micrografias y clases de analisis para materiales como fibra de carbono, fibras) Tj ET
+BT /F1 10.5 Tf 1 0 0 1 58.00 509.00 Tm (aramidicas, fibras naturales, laminados hibridos y otros sistemas matriz-refuerzo. Esta) Tj ET
+BT /F1 10.5 Tf 1 0 0 1 58.00 494.50 Tm (expansion permitira transformar el prototipo en una plataforma adaptable para diferentes) Tj ET
+BT /F1 10.5 Tf 1 0 0 1 58.00 480.00 Tm (familias de materiales compuestos, manteniendo un flujo comun de entrenamiento,) Tj ET
+BT /F1 10.5 Tf 1 0 0 1 58.00 465.50 Tm (analisis, visualizacion y exportacion de resultados.) Tj ET
+BT /F2 15 Tf 1 0 0 1 58.00 427.00 Tm (Impacto potencial) Tj ET
+BT /F1 10.5 Tf 1 0 0 1 58.00 395.00 Tm (El proyecto puede aportar valor en tres areas principales:) Tj ET
+BT /F1 10.5 Tf 1 0 0 1 58.00 368.50 Tm (Investigacion cientifica: facilita el analisis de grandes volumenes de micrografias y) Tj ET
+BT /F1 10.5 Tf 1 0 0 1 58.00 354.00 Tm (permite comparar muestras de forma mas sistematica.) Tj ET
+BT /F1 10.5 Tf 1 0 0 1 58.00 327.50 Tm (Industria y control de calidad: puede ayudar a detectar porosidad, defectos o) Tj ET
+BT /F1 10.5 Tf 1 0 0 1 58.00 313.00 Tm (variaciones en la distribucion de fibras, reduciendo tiempos de inspeccion.) Tj ET
+BT /F1 10.5 Tf 1 0 0 1 58.00 286.50 Tm (Formacion y transferencia tecnologica: ofrece una herramienta accesible para) Tj ET
+BT /F1 10.5 Tf 1 0 0 1 58.00 272.00 Tm (estudiantes, laboratorios y centros de investigacion que trabajan con materiales) Tj ET
+BT /F1 10.5 Tf 1 0 0 1 58.00 257.50 Tm (compuestos.) Tj ET
+BT /F1 10.5 Tf 1 0 0 1 58.00 231.00 Tm (Ademas, el proyecto tiene potencial de colaboracion internacional, especialmente en) Tj ET
+BT /F1 10.5 Tf 1 0 0 1 58.00 216.50 Tm (areas donde convergen ciencia de materiales, inteligencia artificial, manufactura) Tj ET
+BT /F1 10.5 Tf 1 0 0 1 58.00 202.00 Tm (avanzada y control no destructivo o microestructural.) Tj ET
+BT /F2 15 Tf 1 0 0 1 58.00 163.50 Tm (Riesgos y mitigacion) Tj ET
+BT /F1 10.5 Tf 1 0 0 1 58.00 131.50 Tm (Riesgo: cantidad limitada de imagenes etiquetadas.) Tj ET
+BT /F1 10.5 Tf 1 0 0 1 58.00 110.00 Tm (Mitigacion: ampliar progresivamente el dataset, usar aumento de datos y aprendizaje por) Tj ET
+BT /F1 10.5 Tf 1 0 0 1 58.00 95.50 Tm (transferencia.) Tj ET
+endstream
+endobj
+6 0 obj
+<< /Length 1968 >>
+stream
+BT /F1 10.5 Tf 1 0 0 1 58.00 780.00 Tm (Riesgo: variabilidad entre tipos de micrografias.) Tj ET
+BT /F1 10.5 Tf 1 0 0 1 58.00 758.50 Tm (Mitigacion: entrenar con imagenes de diferentes condiciones y permitir modelos) Tj ET
+BT /F1 10.5 Tf 1 0 0 1 58.00 744.00 Tm (especificos por material.) Tj ET
+BT /F1 10.5 Tf 1 0 0 1 58.00 717.50 Tm (Riesgo: dificultad de uso para usuarios no tecnicos.) Tj ET
+BT /F1 10.5 Tf 1 0 0 1 58.00 696.00 Tm (Mitigacion: desarrollar una interfaz simple, con parametros por defecto y reportes) Tj ET
+BT /F1 10.5 Tf 1 0 0 1 58.00 681.50 Tm (automaticos.) Tj ET
+BT /F1 10.5 Tf 1 0 0 1 58.00 655.00 Tm (Riesgo: errores en regiones ambiguas.) Tj ET
+BT /F1 10.5 Tf 1 0 0 1 58.00 633.50 Tm (Mitigacion: mantener una clase de "no identificado" y permitir revision manual) Tj ET
+BT /F1 10.5 Tf 1 0 0 1 58.00 619.00 Tm (posterior.) Tj ET
+BT /F2 15 Tf 1 0 0 1 58.00 580.50 Tm (Conclusion) Tj ET
+BT /F1 10.5 Tf 1 0 0 1 58.00 548.50 Tm (Este proyecto busca convertir un prototipo de vision computacional en una herramienta) Tj ET
+BT /F1 10.5 Tf 1 0 0 1 58.00 534.00 Tm (practica para el analisis de materiales compuestos. Su valor principal esta en) Tj ET
+BT /F1 10.5 Tf 1 0 0 1 58.00 519.50 Tm (automatizar una tarea tecnica compleja, reducir tiempos de analisis y mejorar la) Tj ET
+BT /F1 10.5 Tf 1 0 0 1 58.00 505.00 Tm (reproducibilidad de los resultados.) Tj ET
+BT /F1 10.5 Tf 1 0 0 1 58.00 478.50 Tm (La implementacion propuesta combina desarrollo de inteligencia artificial, validacion) Tj ET
+BT /F1 10.5 Tf 1 0 0 1 58.00 464.00 Tm (experimental, diseno de interfaz y expansion progresiva hacia distintos materiales. Esto) Tj ET
+BT /F1 10.5 Tf 1 0 0 1 58.00 449.50 Tm (permite comenzar con un caso concreto, fibra de vidrio, y construir una plataforma) Tj ET
+BT /F1 10.5 Tf 1 0 0 1 58.00 435.00 Tm (escalable con potencial de aplicacion en investigacion, industria y transferencia) Tj ET
+BT /F1 10.5 Tf 1 0 0 1 58.00 420.50 Tm (tecnologica.) Tj ET
+endstream
+endobj
+7 0 obj
+<< /Type /Page /Parent 11 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 1 0 R /F2 2 0 R >> >> /Contents 3 0 R >>
+endobj
+8 0 obj
+<< /Type /Page /Parent 11 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 1 0 R /F2 2 0 R >> >> /Contents 4 0 R >>
+endobj
+9 0 obj
+<< /Type /Page /Parent 11 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 1 0 R /F2 2 0 R >> >> /Contents 5 0 R >>
+endobj
+10 0 obj
+<< /Type /Page /Parent 11 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 1 0 R /F2 2 0 R >> >> /Contents 6 0 R >>
+endobj
+11 0 obj
+<< /Type /Pages /Kids [7 0 R 8 0 R 9 0 R 10 0 R] /Count 4 >>
+endobj
+12 0 obj
+<< /Type /Catalog /Pages 11 0 R >>
+endobj
+xref
+0 13
+0000000000 65535 f 
+0000000015 00000 n 
+0000000112 00000 n 
+0000000214 00000 n 
+0000003871 00000 n 
+0000007451 00000 n 
+0000011576 00000 n 
+0000013596 00000 n 
+0000013733 00000 n 
+0000013870 00000 n 
+0000014007 00000 n 
+0000014145 00000 n 
+0000014222 00000 n 
+trailer
+<< /Size 13 /Root 12 0 R >>
+startxref
+14273
+%%EOF
