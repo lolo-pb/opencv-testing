@@ -8,6 +8,9 @@ adding them to training. Prediction output normally goes to `outputs/`.
 
 `src/` contains shared label, dataset, model, loss, and validation code.
 
+`statistics/` contains small analysis scripts for results already produced by
+the current project.
+
 # Flow
 
 ```text
@@ -17,10 +20,16 @@ paint masks
     -> checkpoints/final.pt
     -> predict.py
     -> outputs/
+    -> statistics/get-statistics.py
 ```
 
 Training uses image patches and produces a model checkpoint. Prediction loads
 that checkpoint and produces a four-color mask plus an overlay.
+
+Statistics read the four-color prediction masks and count pixels per class.
+This replaces only the useful statistics part of the old `Entrega01.ipynb`
+notebook from `C:\lolo\dev\micrography-imgpro`; it does not bring over the
+legacy processing modules.
 
 # Control scripts
 
@@ -46,6 +55,14 @@ to `outputs/` unless another output folder is passed.
 Runs prediction on one image or every supported image directly inside a folder.
 It uses the constants at the top of the file for checkpoint, output folder,
 tile size, and overlap. Its default output folder is `outputs/test/`.
+
+`statistics/get-statistics.py`
+
+Calculates `pores`, `fibers`, `resin`, `undefined`, and `sumcheck` percentages
+from exact-color segmentation masks. If given a folder, it prefers `*-mask`
+files so overlays are ignored. It writes `statistics/statistics.csv` by
+default and supports `--crop-bottom 290` when old microscope labels need to be
+excluded.
 
 # Important
 
