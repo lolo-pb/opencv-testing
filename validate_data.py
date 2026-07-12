@@ -11,12 +11,22 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--clean-output", type=Path, default=Path("data/validated_masks")
     )
+    parser.add_argument(
+        "--with-overlays",
+        action="store_true",
+        help="Allow mixed exact masks and corrected overlays in the masks folder.",
+    )
     return parser.parse_args()
 
 
 def main() -> int:
     args = parse_args()
-    result = validate_dataset(args.images, args.masks, args.clean_output)
+    result = validate_dataset(
+        args.images,
+        args.masks,
+        args.clean_output,
+        with_overlays=args.with_overlays,
+    )
 
     for warning in result.warnings:
         print(f"WARNING: {warning}")

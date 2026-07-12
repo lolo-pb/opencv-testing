@@ -1,7 +1,9 @@
 # Project structure
 
-`data/images/` holds original micrographs. `data/masks/` holds matching,
-hand-painted PNG masks. Generated clean masks go in `data/validated_masks/`.
+`data/images/` holds original micrographs. `data/masks/` holds matching
+training labels. Those labels can be exact masks, or corrected overlays when
+validation is run with `--with-overlays`. Generated clean masks go in
+`data/validated_masks/`.
 
 `data/test/images/` holds images used for checking a trained model without
 adding them to training. Prediction output normally goes to `outputs/`.
@@ -37,7 +39,9 @@ legacy processing modules.
 
 Checks that every training image has a same-name PNG mask, that image and mask
 sizes match, and that masks use the expected label colors. It can write cleaned
-masks to `data/validated_masks/`.
+masks to `data/validated_masks/`. With `--with-overlays`, mixed exact masks and
+corrected overlays are allowed in `data/masks/`; overlays are converted back to
+exact masks before being written to validated data.
 
 `train.py`
 

@@ -13,6 +13,11 @@ data/images/micrography-example-0.jpg
 data/masks/micrography-example-0.png
 ```
 
+`data/masks/` can also contain corrected overlays when validation is run with
+`--with-overlays`. Exact masks pass through the normal validation path; overlays
+are converted back into exact masks before being written to
+`data/validated_masks/`.
+
 Masks must use solid colors:
 
 | Class | RGB color |
@@ -40,6 +45,12 @@ Check all masks before training:
 
 ```bash
 python validate_data.py
+```
+
+If `data/masks/` contains a mix of exact masks and corrected overlays, run:
+
+```bash
+python validate_data.py --with-overlays
 ```
 
 Train only after the masks have been reviewed:

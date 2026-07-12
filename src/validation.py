@@ -4,6 +4,7 @@ from pathlib import Path
 import numpy as np
 
 from src.labels import (
+    CLASS_COLORS_RGB,
     decode_mask,
     encode_mask,
     read_rgb,
@@ -13,6 +14,10 @@ from src.labels import (
 
 
 IMAGE_EXTENSIONS = {".jpg", ".jpeg", ".png", ".bmp", ".tif", ".tiff", ".webp"}
+MASK_LIKE_COLOR_DISTANCE = 12
+MASK_LIKE_RATIO = 0.99
+OVERLAY_IMAGE_WEIGHT = 0.55
+OVERLAY_MASK_WEIGHT = 0.45
 
 
 @dataclass(frozen=True)
@@ -41,10 +46,38 @@ def find_images(directory: Path) -> dict[str, Path]:
     }
 
 
+def nearest_label_colors(image: np.ndarray) -> tuple[np.ndarray, np.ndarray]:
+    pixels = image.astype(np.int32)
+    colors = CLASS_COLORS_RGB.astype(np.int32)
+    distances = np.sum(
+        (pixels[:, :, None, :] - colors[None, None, :, :]) ** 2,
+        axis=3,
+    )
+    class_ids = np.argmin(distances, axis=2).astype(np.uint8)
+    nearest_distance = np.sqrt(np.min(distances, axis=2))
+    return class_ids, nearest_distance
+
+
+def is_mask_like(mask_or_overlay: np.ndarray) -> tuple[bool, float]:
+    _, nearest_distance = nearest_label_colors(mask_or_overlay)
+    mask_like_ratio = float(np.mean(nearest_distance <= MASK_LIKE_COLOR_DISTANCE))
+    return mask_like_ratio >= MASK_LIKE_RATIO, mask_like_ratio
+
+
+def overlay_to_class_ids(image: np.ndarray, overlay: np.ndarray) -> np.ndarray:
+    recovered = (
+        overlay.astype(np.float32) - OVERLAY_IMAGE_WEIGHT * image.astype(np.float32)
+    ) / OVERLAY_MASK_WEIGHT
+    recovered = np.clip(np.rint(recovered), 0, 255).astype(np.uint8)
+    class_ids, _ = nearest_label_colors(recovered)
+    return class_ids
+
+
 def validate_dataset(
     image_dir: Path,
     mask_dir: Path,
     clean_dir: Path | None = None,
+    with_overlays: bool = False,
 ) -> ValidationResult:
     images = find_images(image_dir)
     masks = {
@@ -74,21 +107,44 @@ def validate_dataset(
             )
             continue
 
-        class_ids, invalid = encode_mask(mask)
-        invalid_count = int(invalid.sum())
-        valid_ratio = 1.0 - invalid_count / invalid.size
         mean_difference = float(
             np.mean(np.abs(image.astype(np.int16) - mask.astype(np.int16)))
         )
+        if mean_difference < 5:
+            errors.append(f"{name}: mask appears to be a copy of the original image")
+            continue
 
-        if valid_ratio < 0.5:
+        mask_like, mask_like_ratio = is_mask_like(mask)
+        converted_from_overlay = False
+        if with_overlays and not mask_like:
+            if clean_dir is None:
+                errors.append(f"{name}: overlay conversion requires a clean output dir")
+                continue
+            class_ids = overlay_to_class_ids(image, mask)
+            invalid = np.zeros(class_ids.shape, dtype=bool)
+            invalid_count = 0
+            converted_from_overlay = True
+            warnings.append(
+                f"{name}: converted overlay to mask "
+                f"({mask_like_ratio:.1%} mask-like pixels)"
+            )
+        else:
+            class_ids, invalid = encode_mask(mask)
+            invalid_count = int(invalid.sum())
+
+        valid_ratio = 1.0 - invalid_count / invalid.size
+
+        if not with_overlays and valid_ratio < 0.5:
             errors.append(
                 f"{name}: only {valid_ratio:.1%} of mask pixels use valid colors; "
                 "this does not look like a painted mask"
             )
             continue
-        if mean_difference < 5:
-            errors.append(f"{name}: mask appears to be a copy of the original image")
+        if not converted_from_overlay and valid_ratio < 0.5:
+            errors.append(
+                f"{name}: only {valid_ratio:.1%} of mask pixels use valid colors; "
+                "this does not look like a painted mask or overlay"
+            )
             continue
 
         if invalid_count:
