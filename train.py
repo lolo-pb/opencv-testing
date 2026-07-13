@@ -27,18 +27,31 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--workers", type=int, default=0)
     parser.add_argument("--resume", type=Path)
     parser.add_argument("--no-pretrained", action="store_true")
+    parser.add_argument(
+        "--with-overlays",
+        action="store_true",
+        help="Allow mixed exact masks and corrected overlays in the masks folder.",
+    )
     return parser.parse_args()
 
 
 def main() -> int:
     args = parse_args()
-    validation = validate_dataset(args.images, args.masks, args.validated_masks)
+    validation = validate_dataset(
+        args.images,
+        args.masks,
+        args.validated_masks,
+        with_overlays=args.with_overlays,
+    )
     for warning in validation.warnings:
         print(f"WARNING: {warning}")
     if not validation.ok:
         for error in validation.errors:
             print(f"ERROR: {error}")
-        print("Training stopped: fix the dataset and run validate_data.py first.")
+        print(
+            "Training stopped: fix the dataset and run validate_data.py first."
+            " Use --with-overlays if the masks folder contains corrected overlays."
+        )
         return 1
 
     print("    ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠠⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀")
